@@ -1,12 +1,14 @@
 //import logo from "./logo.svg";
 import "./App.css";
-import Routing from "./routes";
+import Routing from "./Routing";
+
 import Header from "./website/header";
 
 function App() {
   return (
     <div>
-      <Header />
+    
+<Routing/>
     </div>
   );
 }
