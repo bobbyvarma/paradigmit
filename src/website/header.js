@@ -1,35 +1,71 @@
 import React, { useState } from "react";
-import { Carousel, Tabs } from "antd";
+import { Card, Carousel, Col, Dropdown, Row } from "antd";
 //import { Link, NavLink } from "react-router-dom";
 //import { Dropdown, Space } from "antd";
 import { ArrowRightOutlined, CaretDownOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
 import Paragraph from "antd/es/skeleton/Paragraph";
 import Footer from "./Footer";
-import {
- 
-  MenuOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
+import { intro } from "./NavBar.config";
+import Aboutus from "./Aboutus";
 
-
-export const images=[
+export const images = [
   {
-    src:"./images/CTS1.jpg",
-    text:"Clinical Trail Services",
-    Paragraph:" Clinical Data -  Statistical programming - Medical Writing",
-   
+    src: "./images/CTS1.jpg",
+    text: "Clinical Trail Services",
+    Paragraph: " Clinical Data -  Statistical programming - Medical Writing",
   },
   {
-    src:"./images/OIP.jpg",
-    text:"Application Services  System Integration (ASSI)",
-    Paragraph:" We halp you optimize and aligning all cross business functionalities"
-    
+    src: "./images/OIP.jpg",
+    text: "Application Services  System Integration (ASSI)",
+    Paragraph:
+      " We halp you optimize and aligning all cross business functionalities",
   },
   {
-    src:"./images/security.jpg",
-    text:" Cyber Security"
-  }
-]
+    src: "./images/security.jpg",
+    text: " Cyber Security",
+  },
+];
+export const data = [
+  {
+    src: "./images/m-data.png",
+    title: "Medidata Solutions",
+    conent: "Marouane, Engagement Director",
+    para: "I wanted to bring this to your attention. We recently went live with a custom Rave to IMPACT integration. You guys were critical players in this effort. It is no small accomplishment, I assure you. ",
+  },
+  {
+    src: "./images/voxware.png",
+    title: "Voxware,Inc.",
+    conent: "Joan, Engagement Director",
+    para: "I want you to know how much I appreciated the extra time and quality work that the team has put in getting the custom script developed, tested and released for execution. We are extremely satisfied with your work, responsiveness and assistance.					        ",
+  },
+  {
+    src: "./images/perform.jpg",
+    title: "PerformRx",
+    conent: "Neb Demessie,Manager of Pharmacy",
+    para: "I have received positive feedback from SMEs, and we are ready to transition to the next phase of the project. We look forward to Paradigm’s continued oversight and support as we embark on this rapid journey of growth and technological transformation.	 ",
+  },
+];
+
+export const icons = [
+  {
+    src: "./images/deckers.png",
+  },
+  {
+    src: "./images/Gallaudet.png",
+  },
+  {
+    src: "./images/medideta.png",
+  },
+  {
+    src: "./images/paradigm.png",
+  },
+  {
+    src: "./images/PTC.png",
+  },
+];
 
 //  export const facts=[
 //   {
@@ -47,28 +83,26 @@ export const images=[
 //     title:"43+",
 //     haed:" Sponsors" ,
 //   para:"Sponsors Pharma/CROs " },
- 
+
 // ]
 
-const ct="./images/CT.jpg"
-const cts="./images/CTS.jpg"
-const cts1="./images/CTS1.jpg"
-const ts="./images/ts.jpg"
-const bg="./images/bg.png"
+const ct = "./images/CT.jpg";
+const cts = "./images/CTS.jpg";
+const cts1 = "./images/CTS1.jpg";
+const ts = "./images/ts.jpg";
+const bg = "./images/bg.png";
 
 const logo = "./images/logo.png";
 
-
 //const ai = "./images/ai.png";
 const si = "./images/SI.jpg";
-const ai="./images/ai.png"
+const ai = "./images/ai.png";
 const medicine = "./images/medicine.jpg";
 const Header = () => {
-  const [selectedOption,setSelectedOption]=useState('')
-  const handleOptionChange=(e)=>{
-    setSelectedOption(e.target.value)
-  }
-
+  const [selectedOption, setSelectedOption] = useState("");
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   const [open, setOpen] = useState(false);
   const handleMenuClick = (e) => {
@@ -79,21 +113,22 @@ const Header = () => {
   const handleOpenChange = (flag) => {
     setOpen(flag);
   };
+
   const items = [
     {
-      label: "CLINICAL TRIAL",
+      label: "// CLINICAL TRIAL",
       key: "1",
     },
     {
-      label: "APPLICATION SERVICES ? SYSTEM INTEGRATIONS(ASSI)",
+      label: "// APPLICATION SERVICES ? SYSTEM INTEGRATIONS(ASSI)",
       key: "2",
     },
     {
-      label: "BUSINESS PROCESS OUTSOURCING",
+      label: " // BUSINESS PROCESS OUTSOURCING",
       key: "3",
     },
     {
-      label: "CYBER SECURITY",
+      label: "// CYBER SECURITY",
       key: "4",
     },
   ];
@@ -111,81 +146,115 @@ const Header = () => {
       <div className="w-full h-full">
         <div id="header " className="">
           <div className="md:block hidden">
+            <div className=" justify-evenly flex  w-full pt-3 items-center">
+              <div className="w-1/3  flex justify-center">
+                <img src={logo} alt="logo" className="w-[250px]  "></img>
+              </div>
+              <div className="flex w-2/3  justify-evenly items-center">
+                <div className=" font-semibold text-lg  ">
+                  <ul className="flex gap-8 uppercase ">
+                    <NavLink>
+                      <li className="hover:text-sky-500">Home</li>
+                    </NavLink>
+                    <NavLink to="./Aboutus">
+                      <li className="hover:text-sky-500">ABOUTS US</li>
+                    </NavLink>
+                    <NavLink>
+                      <Dropdown
+                        menu={{ items, onClick: handleMenuClick }}
+                        onOpenChange={handleOpenChange}
+                        open={open}
+                      >
+                        <li
+                          onClick={(e) => e.preventDefault()}
+                          className="hover:text-sky-500 flex gap-1 items-center"
+                        >
+                          SERVICES
+                          <CaretDownOutlined />
+                        </li>
+                      </Dropdown>
+                    </NavLink>
+                    <NavLink to="./POSTS">
+                      <li className="hover:text-sky-500">POSTS</li>
+                    </NavLink>
+                    <NavLink>
+                      <li className="hover:text-sky-500">CAREERS</li>
+                    </NavLink>
+                  </ul>
+                </div>
 
-          <div className="w-full justify-evenly flex  pt-3 items-center">
-          <div>
-              <img src={logo} alt="logo" className="w-[250px] "></img>
+                <div className="">
+                  <button className="px-11 py-3  bg-[#1e73be] rounded border hover:text-blue-400 hover:border-blue-300 hover:bg-white text-white">
+                    ASK US
+                  </button>
+                </div>
+              </div>
             </div>
-            <div>
-              <Navbar  />
-            </div>
-            
-            <div className="">
-              <button className="px-11 py-3  bg-[#1e73be] rounded border hover:text-blue-400 hover:border-blue-300 hover:bg-white text-white">
-                ASK US
-              </button>
-            </div>
-          </div>
           </div>
         </div>
         <div className="block md:hidden w-full p-5  top-0 z-10 fixed bg-[#272B35]">
-            <div className="w-full flex  items-center">
-              <div className="w-7/12">
-                <a href="/">
-                  <img src={logo}></img>
-                </a>
-              </div>
-              <div className="w-5/12 flex justify-end">
-                <MenuOutlined
-                  className="text-white cursor-pointer "
-                  onClick={() => setShowNav(!showNav)}
-                />
-              </div>
+          <div className="w-full flex  items-center">
+            <div className="w-7/12">
+              <a href="/">
+                <img src={logo}></img>
+              </a>
             </div>
-            {showNav ? (
-              <div className="w-full flex justify-end">
-                <div
-                  className="md:w-1/2 w-10/12"
-                  style={{ height: window.innerHeight }}
-                >
-                  <div className="text-white">
+            <div className="w-5/12 flex justify-end">
+              <MenuOutlined
+                className="text-white cursor-pointer "
+                onClick={() => setShowNav(!showNav)}
+              />
+            </div>
+          </div>
+          {showNav ? (
+            <div className="w-full flex justify-end">
+              <div
+                className="md:w-1/2 w-10/12"
+                style={{ height: window.innerHeight }}
+              >
+                <div className="text-white">
                   <Navbar />
-                  </div>
                 </div>
               </div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
+        </div>
 
         <div>
           <section>
             <div className="pt-5">
               <Carousel autoplay className="md:block hidden">
-
-                {
-                  images.map((images,index)=>(
-                    <div key={index} >
-                      <div className="relative w-full">
-                      <img src={images.src} alt={images.text} className="md:w-full "/>
+                {images.map((images, index) => (
+                  <div key={index}>
+                    <div className="relative w-full">
+                      <img
+                        src={images.src}
+                        alt={images.text}
+                        className="md:w-full "
+                      />
                       <div className=" absolute top-10 text-white ">
                         <div>
-                      <h3 className="text-white font-bold  mt-32 ml-10 text-7xl">{images.text}</h3>
+                          <h3 className="text-white font-bold  mt-32 ml-10 text-7xl">
+                            {images.text}
+                          </h3>
                         </div>
                         <div>
-                      <p  className="flex w-full text-3xl font-bold gap-5  mt-10 ml-10 text-white">{images.Paragraph}</p>
+                          <p className="flex w-full text-3xl font-bold gap-5  mt-10 ml-10 text-white">
+                            {images.Paragraph}
+                          </p>
                         </div>
                         <div>
-                      <button         type="button "
-        className="px-8 py-4 bg-sky-400 hover:bg-blue-400 ml-10 mt-20 text-white font-semibold text-2xl border-collapse "
-      >
-Learn</button>
+                          <button
+                            type="button "
+                            className="px-8 py-4 bg-sky-400 hover:bg-blue-400 ml-10 mt-20 text-white font-semibold text-2xl border-collapse "
+                          >
+                            Learn
+                          </button>
                         </div>
                       </div>
-                      </div>
-
                     </div>
-                  ))
-                }
-               
+                  </div>
+                ))}
               </Carousel>
             </div>
           </section>
@@ -224,162 +293,103 @@ Learn</button>
             <p className="italic font-semibold hover:"> LEARN MORE</p>
           </div>
         </div>
-        <div className=" w-full mt-5 h-[1100px] bg-[#221F3C]" id="child 2">
-          <div className="w-full  ">
-            <h1 className="text-4xl font-medium flex  pt-5 text-white justify-center">
-              Industry Experts
+        <div
+          className=" w-full mt-5  grid  grid-cols-3 px-10 gap-5  py-10 bg-[#221F3C]  "
+          id="child 2"
+        >
+          {intro.map((e) => {
+            return (
+              <div>
+                <Card className="bg-[#262051]   w-full">
+                  <div className=" ">
+                    <div className=" text-white w-full p-10 ">
+                      <p className="w-full font-bold text-2xl">{e.title}</p>
+                      <p className="font-semibold mt-10 text-lg">{e.para}</p>
+                      <p className="text-[#504DFF] items-center flex gap-2 mt-5">
+                        {e.icon}LEARN MORE
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+        <div className="">
+          <div className="text-4xl font-medium flex  w-full pt-10 text-white justify-center">
+            <h1>Facts</h1>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 my-10 mx-28 relative  ">
+          <img src={ct} className="w-[90%]  h-[80%]"></img>
+
+          <img src={cts} className="w-[90%] h-[80%]"></img>
+
+          <img src={ts} className="w-[90%]  h-[90%]"></img>
+          <img src={cts1} className="w-[90%] h-[90%]"></img>
+        </div>
+        <div className="">
+          <div className="   ">
+            <div>
+              <img src={bg} className="w-full h-56 px-16 absolute"></img>
+            </div>
+            <div className="relative text-white ">
+              <div className="justify-center py-16 mx-28">
+                <h1 className="font-semibold  text-2xl">
+                  Thank You So Much For Visiting Us. Should You Have Any
+                  Queries,
+                </h1>
+                <div className="flex items-center justify-between  text-2xl">
+                  <h1>Please feel free to reach us at ask@paradigmit.com</h1>
+                  <button className="bg-sky-400 px-5 py-4 ">ASK ME</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-10 w-full mt-10 bg-stone-200"></div>
+
+        <footer>
+          <div className="w-full mt-16">
+            <p className="text-[#1e73be] text-lg w-full flex justify-center">
+              //OUR CLIENTS
+            </p>
+            <h1 className="text-[#0E0E52] text-4xl font-semibold flex justify-center text-center">
+              We are Trusted Partners of <br />
+              Leading IT Solution Providers World Wide
             </h1>
           </div>
-          <div className=" w-full px-20 gap-6 grid grid-cols-6  mt-10 justify-between ">
-            <div className=" text-white hover:bg-white col-start-1 col-end-3 hover:text-black bg-[#262051] px-11 pt-11   border ">
-              <div>
-                <h1 className="  text-xl">Clinical Trial Services</h1>
-                <p className="mt-14 font-extralight">
-                  A deep experience in study build setup application development
-                  and executions.
-                </p>
-              </div>
-              <div className="w-full  text-[#1e73be] mt-16  flex items-center gap-2 ">
-                <div>
-                  <ArrowRightOutlined className="mb-2" />
-                </div>
-                <div>
-                  <p className="italic font-semibold hover:"> LEARN MORE</p>
-                </div>
-              </div>
-            </div>
-            <div className=" text-white border col-start-3 col-end-5  hover:bg-white hover:text-black bg-[#262051]  pb-10  px-11 pt-11 ">
-              <div>
-                <h1 className=" text-xl">
-                  Application Services / Systems Integrations (ASSI)
-                </h1>
-                <p className="mt-8 font-light">
-                  We help you optimize and aligning all cross business
-                  functionalities
-                </p>
-              </div>
-              <div className="w-full  text-[#1e73be]  mt-16  flex items-center gap-2 ">
-                <div>
-                  <ArrowRightOutlined className="mb-2" />
-                </div>
-                <div>
-                  <p className="italic font-semibold hover:"> LEARN MORE</p>
-                </div>
-              </div>
-            </div>
-            <div className=" text-white col-start-5 col-end-7  hover:bg-white hover:text-black bg-[#262051] border px-11 pt-11 pb-10">
-              <div>
-                <h1 className=" text-xl">Cyber Security</h1>
-                <p className="mt-8 font-light ">
-                  CS Cyber Security Focuses on System Integration (SI) and
-                  providing SOC managed services to various Government and
-                  Enterprise sectors.
-                </p>
-              </div>
-              <div className="w-full  text-[#1e73be] mt-12 flex items-center gap-2 ">
-                <div>
-                  <ArrowRightOutlined className="mb-2" />
-                </div>
-                <div>
-                  <p className="italic font-semibold hover:"> LEARN MORE</p>
-                </div>
-              </div>
-            </div>
 
-            <div className=" text-white col-start-2 col-end-4   hover:bg-white hover:text-black bg-[#262051] border px-11 pt-11 pb-10">
-              <div>
-                <h1 className=" text-xl">T Agri-Tech</h1>
-                <p className="mt-8 font-light ">
-                  Leveraging the power of Technology and building Data and
-                  involve the best practices into precision agriculture and farm
-                  management for changing the livelihood of the farmers
-                </p>
-              </div>
-              <div className="w-full  text-[#1e73be] mt-12 flex items-center gap-2 ">
-                <div>
-                  <ArrowRightOutlined className="mb-2" />
-                </div>
-                <div>
-                  <p className="italic font-semibold hover:"> LEARN MORE</p>
-                </div>
-              </div>
-            </div>
-            <div className=" text-white col-start-4 col-end-6  hover:bg-white hover:text-black bg-[#262051] border px-11 pt-11 pb-10">
-              <div>
-                <h1 className=" text-xl">EG E-Governance</h1>
-                <p className="mt-8 font-light ">
-                  Implementation of various Government services linked with
-                  citizens (G2C), businesses (G2B), employees (G2E) and within
-                  the Government department, state/ central ministries (G2G).
-                </p>
-              </div>
-              <div className="w-full  text-[#1e73be] mt-12 flex items-center gap-2 ">
-                <div>
-                  <ArrowRightOutlined className="mb-2" />
-                </div>
-                <div>
-                  <p className="italic font-semibold hover:"> LEARN MORE</p>
-                </div>
-              </div>
-            </div>
+          <div className=" w-full flex gap-24 mt-16 px-32">
+            {icons.map((e) => {
+              {
+                return (
+                  <div className="flex ">
+                    <img
+                      src={e.src}
+                      className="w-36 gap-10  opacity-25 hover:opacity-100 "
+                    ></img>
+                  </div>
+                );
+              }
+            })}
           </div>
-          <div>
 
+          <div className="  ">
+            <Carousel className=" ">
+              <Card className=" ">
+                {data.map((e) => {
+                  return (
+                    <div className=" ">
+                      <img src={e.src} className="flex w-32"></img>
+                    </div>
+                  );
+                })}
+              </Card>
+            </Carousel>
           </div>
-        
-         <div className="bottom-[-130px]">
-            <div className="text-4xl font-medium flex  w-full pt-10 text-white justify-center">
-              <h1>
-            Facts
-
-              </h1>
-
-          </div>
-  
-         </div>
-         
-          
-        <div className="grid grid-cols-2 my-10 mx-28 relative  ">
-       
-            <img src={ct} className="w-[90%]  h-[80%]"></img>
-
-          
-            <img src={cts} className="w-[90%] h-[80%]"></img>
-            
-            <img src={ts} className="w-[90%]  h-[90%]"></img>
-            <img src={cts1} className="w-[90%] h-[90%]"></img>
-
-         </div>
-<footer>
-  <div>
-    <div className="px-16 ">
-      <div className="">
-
-
-      <div>
-<img src={bg} className="w-full h-56 absolute"></img>
-
-      </div>
-    <div className="relative text-white">
-      <div className="justify-center">
-     <h1>
-Thank You So Much For Visiting Us. Should You Have Any Queries,</h1>
-
-      </div>
-      <div className="flex  items-center">
-<h1>Please feel free to reach us at ask@paradigmit.com</h1>
-<button className="bg-sky-400 px-5 py-4 ">ASK ME</button>
-
-      </div>
-      </div>
-
-    </div>
-
-    </div>
-
-  </div>
-</footer>
-        </div>
+        </footer>
       </div>
     </React.Fragment>
   );
